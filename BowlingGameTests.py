@@ -70,9 +70,43 @@ class BowlingGameTests(unittest.TestCase):
 
         self.assertEquals(117, self.g.score())
 
+    # Test whether hitting 10 pins on the second roll counts as a spare
+    def test_rollFakeStrike(self):
+        self.g.roll(0)
+        self.g.roll(10)
+        self.g.roll(5)
+        self.g.roll(2)
+
+        self.rollMany(16, 0);
+        self.assertEquals(22, self.g.score())
+
     def rollStrike(self):
         self.g.roll(10)
 
     def rollSpare(self):
         self.g.roll(5)
         self.g.roll(5)
+
+    # Test of the example from powerpoint slides
+    def test_givenExample(self):
+        self.g.roll(1);
+        self.g.roll(4);
+        self.g.roll(4);
+        self.g.roll(5);
+        self.g.roll(6);
+        self.g.roll(4);
+        self.g.roll(5);
+        self.g.roll(5);
+        self.g.roll(10);
+        self.g.roll(0);
+        self.g.roll(1);
+        self.g.roll(7);
+        self.g.roll(3);
+        self.g.roll(6);
+        self.g.roll(4);
+        self.g.roll(10);
+        self.g.roll(2);
+        self.g.roll(8);
+        self.g.roll(6);
+
+        self.assertEquals(133, self.g.score());
